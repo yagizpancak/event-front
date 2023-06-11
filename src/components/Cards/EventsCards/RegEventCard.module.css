@@ -1,0 +1,47 @@
+.eventCard {
+  width: 90vw;
+  height: 11vh;
+  box-shadow: 0 0 1px 2px rgba(128, 128, 128, 0.167);
+  margin-bottom: 3vh;
+  display: flex;
+  animation: incrementOpacity 500ms ease-in forwards;
+  position: relative;
+}
+
+.img {
+  height: 100%;
+  width: 20vw;
+  border-radius: 2vh;
+}
+
+.info {
+  box-sizing: border-box;
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  font-size: 1.5vh;
+  color: #ea9b6b;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 1vh;
+}
+
+.status {
+  position: absolute;
+  margin-top: 10%;
+  right: 10vw;
+  height: 2vh;
+  width: 2vh;
+  border-radius: 50%;
+  background-color: green;
+}
+@keyframes incrementOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

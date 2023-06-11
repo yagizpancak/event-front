@@ -1,0 +1,139 @@
+.container {
+  width: 100vw;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  transform: translateX(-100vw);
+  opacity: 0;
+  animation: slide-right 500ms forwards;
+}
+
+.form {
+  width: 90%;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  border-radius: 5px;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
+}
+
+.heading {
+  font-weight: 400;
+  color: #fff;
+  font-size: 2.5vh;
+  margin-bottom: 0.4rem;
+  color: black;
+}
+
+.input {
+  text-align: center;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid rgba(128, 128, 128, 0.515);
+  border-radius: 1vh;
+  background-color: #fff;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.input:focus {
+  outline: none;
+  background-color: #dddfe4;
+}
+
+.button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 1vh;
+  background-color: #ed9057; /*1da1f2*/
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: normal;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 0.5rem;
+}
+
+.button2 {
+  background-color: white;
+  box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.114);
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 2vh;
+}
+
+.btnImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.button:hover {
+  background-color: #ce6f34; /*0c8de4*/
+}
+
+.link {
+  cursor: pointer;
+  color: #ed9057;
+  transition: 500ms;
+}
+
+.link:hover {
+  color: #ed9057;
+}
+
+@media only screen and (min-width: 760px) {
+  .form {
+    width: 50%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    border-radius: 5px;
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
+  }
+  .button2 {
+    background-color: white;
+    box-shadow: 0 0 1px 2px rgba(128, 128, 128, 0.114);
+    width: 50%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 2vh;
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0vw);
+    opacity: 1;
+  }
+}

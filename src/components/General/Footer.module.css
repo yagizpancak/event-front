@@ -1,0 +1,23 @@
+.footer {
+  background-color: #f1edeba5;
+  position: fixed;
+  width: 100vw;
+  height: 10vh;
+  bottom: 0px; /* required */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: 300ms;
+}
+
+.addBtn {
+  position: absolute;
+  bottom: 7vh;
+  height: 6vh;
+  width: 6vh;
+  border-radius: 50%;
+  background-color: #ea9b6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,51 @@
+.posts {
+  box-sizing: border-box;
+  padding: 2vh;
+  width: 100vw;
+  height: 80vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-100vw);
+  opacity: 0;
+  animation: slide-right 500ms forwards;
+}
+
+.header {
+  height: 10vh;
+  width: 100vw;
+  background: rgb(216, 124, 39);
+  background: linear-gradient(
+    180deg,
+    rgb(216, 124, 39) 0%,
+    rgba(236, 168, 73, 0.08735994397759106) 100%
+  );
+}
+
+.backBtn {
+  position: absolute;
+  left: 5vw;
+  top: 5vh;
+}
+
+.pageTitle {
+  position: absolute;
+  left: 15vw;
+  top: 5vh;
+  font-weight: 300;
+  font-size: 2.8vh;
+  color: black;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0vw);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,55 @@
+.home {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  height: 10vh;
+  width: 100vw;
+  background: rgb(216, 124, 39);
+  background: linear-gradient(
+    180deg,
+    rgb(216, 124, 39) 0%,
+    rgba(236, 168, 73, 0.08735994397759106) 100%
+  );
+}
+
+.backBtn {
+  position: absolute;
+  left: 5vw;
+  top: 5vh;
+}
+
+.pageTitle {
+  position: absolute;
+  left: 15vw;
+  top: 5vh;
+  font-weight: 300;
+  font-size: 2.8vh;
+}
+
+.tabContainer {
+  width: 70vw;
+  margin: auto;
+  height: 5vh;
+  background-color: #c7c6c638;
+  border-radius: 5vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  display: flex;
+  box-sizing: border-box;
+  padding: 2vw;
+}
+
+.tabItem {
+  width: 50%;
+  height: 100%;
+  border-radius: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(80, 80, 80);
+  transition: 700ms;
+}

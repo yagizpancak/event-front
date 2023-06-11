@@ -1,0 +1,86 @@
+.container {
+  width: 100vw;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.backBtn {
+  position: absolute;
+  left: 4vw;
+  top: 2vh;
+  color: white;
+}
+
+.headerImg {
+  width: 100vw;
+  margin-bottom: 3vh;
+}
+
+.title {
+  margin-left: 4vw;
+  font-size: 3vh;
+  margin-bottom: 1vh;
+}
+.title2 {
+  margin-left: 4vw;
+  font-size: 3vh;
+  margin-bottom: 4vh;
+}
+
+.dateContainer {
+  width: 80vw;
+  height: 6vh;
+  /* border: 1px solid black; */
+  margin: auto;
+  display: flex;
+  margin-bottom: 2vh;
+}
+
+.textContainer {
+  margin-left: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.followBtn {
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #e99562;
+  border-radius: 4vh;
+  width: 20vw;
+  height: 4vh;
+  color: white;
+  border: none;
+  margin-left: 20vw;
+}
+
+.aboutTitle {
+  margin-top: 2vh;
+  margin-left: 3vw;
+  font-size: 4vh;
+}
+
+.aboutText {
+  font-size: 2vh;
+  padding: 3vw;
+}
+
+.registerBtn {
+  width: 75vw;
+  border-radius: 2vh;
+  height: 7vh;
+  background-color: #e99562;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: none;
+  font-size: 2.3vh;
+  margin-top: 3vh;
+}

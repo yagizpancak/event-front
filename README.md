@@ -1,0 +1,1 @@
+components/categorycard dosyasını yazacağım.
