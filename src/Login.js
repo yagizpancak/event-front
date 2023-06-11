@@ -31,7 +31,7 @@ function Login() {
       var { uname, pass } = document.forms[0];
   
       
-      postData("https://d3bjg2yac4l1hn.cloudfront.net/api/v1/users/login", { username: uname.value, password: pass.value }).then((data) => {
+      postData("https://event-loadb-w1kw731gmuh5-a0726c2ce5853e63.elb.eu-central-1.amazonaws.com:8443/api/v1/users/login", { username: uname.value, password: pass.value }).then((data) => {
         if(data.success){
             setIsSubmitted(true);
         }else{
