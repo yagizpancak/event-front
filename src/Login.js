@@ -31,7 +31,7 @@ function Login() {
       var { uname, pass } = document.forms[0];
   
       
-      postData("https://18.196.203.49:8443/api/v1/users/login", { username: uname.value, password: pass.value }).then((data) => {
+      postData("http://54.93.118.83:8080/api/v1/users/login", { username: uname.value, password: pass.value }).then((data) => {
         if(data.success){
             setIsSubmitted(true);
         }else{
