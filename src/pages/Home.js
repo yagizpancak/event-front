@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Home.module.css";
 import { AiFillCaretDown } from "react-icons/ai";
 import Footer from "../components/General/Footer";
@@ -10,28 +10,57 @@ import football from "../assets/football.png";
 import concer from "../assets/concer.png";
 import { IoMdNotifications, IoMdSearch } from "react-icons/io";
 import { getReduxState } from "../store";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { getBaseUrl } from "../Api";
 
 const Home = (props) => {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   fetch("http://3.68.226.30:8080/api/v1/users/following-list/testUser", {
-  //     method: "GET",
-  //     // headers: { "Content-Type": "application/json" },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => console.log(data));
-  // }, []);
 
-  console.log(getReduxState().user.username);
+  const [input, setInput] = useState("");
+  const [events, setEvents] = useState([]);
+  const [feed, setFeed] = useState([]);
+  const loggedUser = getReduxState().user.username;
+
+  const baseUrl = getBaseUrl();
+
+  useEffect(() => {
+    if (input && input.length >= 2) {
+      fetch(`${baseUrl}/event-management/get-current-events/by-name/${input}`, {
+        method: "GET",
+        // headers: { "Content-Type": "application/json" },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.content !== undefined) {
+            setEvents(data.content);
+          }
+          console.log(data);
+        });
+    } else {
+      setEvents([]);
+    }
+  }, [input]);
+
+  useEffect(() => {
+    fetch(`${baseUrl}/event-feed/${loggedUser}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(
+          "İSTEK ATILAN URL = ",
+          `${baseUrl}/event-feed/${loggedUser}`
+        );
+        console.log("FEED: ", data);
+      });
+  }, []);
+
   return (
     <>
       <div className={classes.home}>
         <div className={classes.header}>
           <span className={classes.location}>
-            Mert Karaca <AiFillCaretDown />
+            {loggedUser} <AiFillCaretDown />
           </span>
           {/* <span className={classes.location}>Urla, İzmir</span> */}
           <IoMdNotifications
@@ -52,27 +81,26 @@ const Home = (props) => {
               type="text"
               className={classes.input}
               placeholder="Search Event.."
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
             />
           </div>
         </div>
 
         <h4 className={classes.upcomingEvents}>Upcoming Events</h4>
-        <EventCard
-          image={concer}
-          date="14 DEC-TUE 4:00 PM"
-          name="Tarkan Konseri"
-        />
-        <EventCard
-          image={basketball}
-          date="5ST JAN-SAT 7:30 AM"
-          name="Basketbol Maçı"
-        />
-        <EventCard
-          image={football}
-          date="17ST MAY-SAT 11:00 PM"
-          name="Halı Saha (14 kişi)"
-        />
-        <EventCard image={tennis} date="3ST JUNE-SAT 00:00 PM" name="Tenis" />
+
+        {events.map((item) => {
+          return (
+            <EventCard
+              imageUrl={item.imageUrl}
+              name={item.name}
+              date={item.startDate}
+            />
+          );
+        })}
+
+        {/* <EventCard image={tennis} date="3ST JUNE-SAT 00:00 PM" name="Tenis" /> */}
       </div>
       <Footer page="home" />
     </>

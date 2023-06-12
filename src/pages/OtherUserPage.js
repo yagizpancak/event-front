@@ -1,46 +1,80 @@
-import React, { useState, useEffect } from "react";
-import classes from "./Profile.module.css";
+import React, { useEffect, useState } from "react";
+import classes from "./OtherUserPage.module.css";
 import Footer from "../components/General/Footer";
-// import Mert from "../assets/Mert.jpeg";
 import About from "../components/ProfileTabs/About";
 import Event from "../components/ProfileTabs/Event";
 import Posts from "../components/ProfileTabs/Posts";
-import { getReduxState } from "../store/index";
 import { getBaseUrl } from "../Api";
-import { FaSignOutAlt } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import user from "../assets/user.png";
+import { getReduxState } from "../store";
 
-const Profile = (props) => {
+const OtherUserPage = (props) => {
   const [tab, setTab] = useState("about");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState(user);
   const [bioInformation, setBioInformation] = useState("");
-  const [follower, setFollower] = useState("-");
-  const [following, setFollowing] = useState("-");
+  const [following, setFollowing] = useState(false);
+  const [followers, setFollowers] = useState("-");
+  const [followings, setFollowings] = useState("-");
+
+  const { username } = useParams();
+  const loggedUser = getReduxState().user.username;
+  console.log("logged user ", loggedUser);
 
   const baseUrl = getBaseUrl();
-  const slicedBasedUrl = baseUrl.slice(0, 24);
-  const username = getReduxState().user.username;
+  // const slicedBasedUrl = baseUrl.slice(0, 24);
 
   useEffect(() => {
-    console.log("1. useffect fetch url => ", `${baseUrl}/profile/${username}`);
+    console.log(`${baseUrl}/profile/bigo`);
 
     fetch(`${baseUrl}/users/profile/${username}`, {
       method: "GET",
       //   headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
-        console.log("profile info fetch res => ", res);
+        console.log(res);
         return res.json();
       })
       .then((data) => {
-        console.log("Profile info data=> ", data);
+        console.log(data);
         setFirstName(data.firstName);
         setLastName(data.lastName);
         setImgUrl(data.imgUrl);
         setBioInformation(data.bioInformation);
       })
       .catch((err) => console.log(err));
+
+    fetch(`${baseUrl}/users/profile-img/${username}`, { method: "GET" })
+      .then((res) => {
+        console.log("ressss", res.status);
+        if (res.status === 500) {
+          const error = new Error("Internal server error yedin");
+          throw error;
+        } else {
+          console.log("500 dönmedi");
+          console.log(`${baseUrl}/users/profile-img/${username}`);
+          setImgUrl(`${baseUrl}/users/profile-img/${username}`);
+        }
+        console.log("else girdi");
+      })
+      .catch((e) => {
+        setImgUrl(user);
+        console.log("ımage not found");
+        console.log(e);
+      });
+
+    fetch(`${baseUrl}/users/following-list/${loggedUser}`, { method: "GET" })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.followingUsers.find((user) => user.username === username)) {
+          setFollowing(true);
+        }
+        console.log("Following List", data.followingUsers);
+      });
 
     fetch(`${baseUrl}/users/get-follow-follower-count/${username}`, {
       method: "GET",
@@ -50,10 +84,20 @@ const Profile = (props) => {
       })
       .then((data) => {
         console.log(data);
-        setFollowing(data.followingCount);
-        setFollower(data.followerCount);
+        setFollowings(data.followingCount);
+        setFollowers(data.followerCount);
       });
   }, []);
+
+  function followHandler() {
+    fetch(`${baseUrl}/users/follow/${loggedUser}/${username}`, {
+      method: "PUT",
+    }).then((res) => {
+      if (res.status === 200) {
+        setFollowing(true);
+      }
+    });
+  }
 
   return (
     <>
@@ -61,15 +105,9 @@ const Profile = (props) => {
         <div
           className={classes.header}
           style={{ height: tab === "posts" ? "5vh" : "10vh" }}
-        >
-          <FaSignOutAlt
-            color="white"
-            className={classes.signOutBtn}
-            size={25}
-          />
-        </div>
+        ></div>
         <img
-          src={imgUrl && `${slicedBasedUrl}${imgUrl}`}
+          src={imgUrl}
           className={classes.pp}
           style={{
             width: tab === "posts" ? "10vh" : "15vh",
@@ -79,16 +117,23 @@ const Profile = (props) => {
         <h5 style={{ fontSize: 20, fontWeight: 500, letterSpacing: 2 }}>
           {firstName} {lastName}
         </h5>
+        <button
+          className={classes.followBtn}
+          style={{ backgroundColor: following ? "green" : "orange" }}
+          onClick={followHandler}
+        >
+          {following ? "Following " : "Follow"}
+        </button>
         <div
           className={classes.followContainer}
           style={{ marginTop: tab === "posts" ? "1vh" : "3vh" }}
         >
           <div className={classes.followingContainer}>
-            <span style={{ fontWeight: 500, fontSize: 18 }}>{follower}</span>
+            <span style={{ fontWeight: 500, fontSize: 18 }}>{followers}</span>
             <span>Followers</span>
           </div>
           <div className={classes.followerContainer}>
-            <span style={{ fontWeight: 500, fontSize: 18 }}>{following}</span>
+            <span style={{ fontWeight: 500, fontSize: 18 }}>{followings}</span>
             <span>Followings</span>
           </div>
         </div>
@@ -125,9 +170,9 @@ const Profile = (props) => {
         {tab === "event" && <Event />}
         {tab === "posts" && <Posts />}
       </div>
-      <Footer page="profile" />
+      <Footer />
     </>
   );
 };
 
-export default Profile;
+export default OtherUserPage;

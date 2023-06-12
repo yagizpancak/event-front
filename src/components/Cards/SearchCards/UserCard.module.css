@@ -1,17 +1,22 @@
-.eventCard {
+.userCard {
   width: 90vw;
   height: 9vh;
-  box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.107);
-
+  box-shadow: 0 0 1px 2px rgba(213, 213, 213, 0.381);
+  background-color: rgba(219, 220, 221, 0.27);
   display: flex;
   align-items: center;
   margin: auto;
-  margin-top: 2vh;
+  margin-top: 1.5vh;
+  opacity: 0;
+  transform: translateY(-10vh);
+  animation: slide-down 300ms ease-in forwards;
+  transition: 500ms;
+  border-radius: 2vh;
 }
 
 .img {
-  height: 15vw;
-  width: 15vw;
+  height: 14vw;
+  width: 14vw;
   border-radius: 50%;
   margin-left: 2vw;
 }
@@ -19,8 +24,9 @@
 .info {
   box-sizing: border-box;
   padding: 1vh;
-  margin-left: 1vw;
+  margin-left: 3vw;
   display: flex;
+  font-size: 2.5vh;
   flex-direction: column;
 }
 
@@ -40,4 +46,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0vh);
+  }
 }
