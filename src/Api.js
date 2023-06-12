@@ -4,7 +4,7 @@ class Api {
   }
 }
 
-const baseUrl = new Api("https://18.156.193.224:8443/api/v1");
+const baseUrl = new Api("https://3.123.21.135:8443/api/v1");
 
 export const getBaseUrl = () => {
   return baseUrl.BASE_URL;

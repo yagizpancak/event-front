@@ -18,9 +18,6 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("bastı");
-    if (!acceptPrivacy || !acceptTerms) {
-      return;
-    }
 
     const baseUrl = getBaseUrl();
     const username = usernameRef.current.value;
@@ -149,6 +146,7 @@ function SignUp() {
           style={{
             backgroundColor: acceptTerms && acceptPrivacy ? "#ed9057" : "gray",
           }}
+          disabled={!acceptTerms || !acceptPrivacy}
         >
           Sign Up
         </button>
