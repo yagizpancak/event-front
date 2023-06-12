@@ -47,6 +47,11 @@
   transition: 700ms;
 }
 
+.username {
+  color: gray;
+  margin-top: 0.5vh;
+}
+
 .followContainer {
   height: 8vh;
   width: 60vw;

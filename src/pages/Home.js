@@ -3,14 +3,8 @@ import classes from "./Home.module.css";
 import { AiFillCaretDown } from "react-icons/ai";
 import Footer from "../components/General/Footer";
 import EventCard from "../components/Cards/HomeCards/EventCard";
-import basketball from "../assets/basketball.png";
-import tennis from "../assets/tennis.png";
-import football from "../assets/football.png";
-
-import concer from "../assets/concer.png";
 import { IoMdNotifications, IoMdSearch } from "react-icons/io";
-import { getReduxState } from "../store";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getBaseUrl } from "../Api";
 
 const Home = (props) => {

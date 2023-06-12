@@ -1,5 +1,5 @@
-.profile {
-  height: 100vh;
+.createEvent {
+  /* height: 100vh; */
   width: 100vw;
   box-sizing: border-box;
   display: flex;
@@ -7,6 +7,7 @@
   align-items: center;
   animation: up 500ms ease-in forwards;
   transition: 500ms;
+  overflow-y: hidden;
 }
 
 .header {
@@ -82,7 +83,7 @@
   margin-top: 2.4vh;
   width: 58vw;
   height: 6%;
-  box-shadow: 0 0 1px 2px rgba(180, 179, 179, 0.167);
+  box-shadow: 0 0 1px 2px #b4b3b32b;
   display: flex;
   border-radius: 2vh;
 }
@@ -130,14 +131,14 @@
 
 .textarea {
   width: 58vw;
-  background-color: #e8d4be3a;
+  background-color: white;
   border-radius: 2vh;
   margin-top: 2vh;
   border: none;
   box-sizing: border-box;
   padding: 2vh;
   font-size: 1.7vh;
-  box-shadow: 0 0 1px 2px rgba(220, 189, 133, 0.316);
+  box-shadow: 0 0 1px 2px #b4b3b32b;
 }
 .registerBtn {
   width: 75vw;

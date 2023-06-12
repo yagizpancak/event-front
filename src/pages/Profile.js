@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Profile.module.css";
 import Footer from "../components/General/Footer";
-// import Mert from "../assets/Mert.jpeg";
 import About from "../components/ProfileTabs/About";
 import Event from "../components/ProfileTabs/Event";
 import Posts from "../components/ProfileTabs/Posts";
-import { getReduxState } from "../store/index";
 import { getBaseUrl } from "../Api";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -94,6 +92,9 @@ const Profile = (props) => {
         <h5 style={{ fontSize: 20, fontWeight: 500, letterSpacing: 2 }}>
           {firstName} {lastName}
         </h5>
+        <span className={classes.username}>{`@${localStorage.getItem(
+          "username"
+        )}`}</span>
         <div
           className={classes.followContainer}
           style={{ marginTop: tab === "posts" ? "1vh" : "3vh" }}

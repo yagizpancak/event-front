@@ -7,7 +7,6 @@ import Posts from "../components/ProfileTabs/Posts";
 import { getBaseUrl } from "../Api";
 import { useParams } from "react-router-dom";
 import user from "../assets/user.png";
-import { getReduxState } from "../store";
 
 const OtherUserPage = (props) => {
   const [tab, setTab] = useState("about");

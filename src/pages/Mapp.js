@@ -39,7 +39,7 @@ const Mapp = (props) => {
       <button
         className={classes.btn}
         style={{
-          bottom: props.mapOn ? "5vh" : 0,
+          bottom: props.mapOn ? "10vh" : 0,
           height: props.mapOn ? "7vh" : "0vh",
         }}
         onClick={() => {

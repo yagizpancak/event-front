@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import classes from "./EventDetail.module.css";
 import { useNavigate } from "react-router-dom";
 import concer from "../assets/concer.png";

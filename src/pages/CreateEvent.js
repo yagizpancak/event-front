@@ -2,11 +2,9 @@ import React, { useState, useRef } from "react";
 import classes from "./CreateEvent.module.css";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import addPhoto from "../assets/addPhoto.png";
 import date from "../assets/Date.png";
 import location from "../assets/Location.png";
 import { getBaseUrl } from "../Api";
-import { getReduxState } from "../store";
 import Mapp from "./Mapp";
 
 const CreateEvent = (props) => {
@@ -17,16 +15,24 @@ const CreateEvent = (props) => {
     "https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0"
   );
   const [file, setFile] = useState();
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
 
   const nameRef = useRef();
   const userLimitRef = useRef();
 
+  const height = window.innerHeight;
+
   function locationHandler(lat, lng) {
-    setLat(lat);
-    setLng(lng);
-    setMapOn(false);
+    console.log(lat);
+    if (lat !== 1 && lng !== 1) {
+      setLat(lat);
+      setLng(lng);
+      setMapOn(false);
+    } else {
+      setMapOn(false);
+      return;
+    }
   }
 
   const handleFotoYukleme = (event) => {
@@ -95,7 +101,7 @@ const CreateEvent = (props) => {
   };
 
   return (
-    <div className={classes.profile}>
+    <div className={classes.createEvent} style={{ height: height }}>
       <div style={{ height: 0 }}>
         <Mapp mapOn={mapOn} locationHandler={locationHandler} />
       </div>
@@ -147,7 +153,9 @@ const CreateEvent = (props) => {
           }}
         >
           <img src={location} className={classes.img2} />
-          <div className={classes.info}>Choose Location</div>
+          <div className={classes.info}>
+            {lat === "" ? "Choose Location" : "Location Selected"}
+          </div>
         </div>
 
         <textarea

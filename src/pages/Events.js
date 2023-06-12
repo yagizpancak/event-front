@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Events.module.css";
 import Footer from "../components/General/Footer";
-import EventCard from "../components/Cards/HomeCards/EventCard";
 import basketball from "../assets/basketball.png";
 import tennis from "../assets/tennis.png";
 import football from "../assets/football.png";
@@ -15,6 +14,7 @@ import OrgEventCard from "../components/Cards/EventsCards/OrgEventCard";
 import Modal from "../components/Modals/Modal";
 import RegistrationsContainer from "../components/Modals/RegistrationsContainer";
 import RegistrationItem from "../components/Modals/RegistrationItem";
+import { BsArrowLeft } from "react-icons/bs";
 
 const Events = (props) => {
   const [tab, setTab] = useState("registered");
@@ -42,12 +42,13 @@ const Events = (props) => {
           </Modal>
         )}
         <div className={classes.header}>
-          <IoMdNotifications
+          <BsArrowLeft
             size={25}
             className={classes.backBtn}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/Homee")}
           />
-          <span className={classes.pageTitle}>Events</span>
+
+          <span className={classes.pageTitle}>My Events</span>
         </div>
         <div className={classes.tabContainer}>
           <div

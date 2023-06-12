@@ -5,13 +5,11 @@ import { useNavigate } from "react-router-dom";
 import eventLogo from "../assets/eventLogo2.png";
 import facebook from "../assets/facebook.png";
 import google from "../assets/search.png";
-import { useDispatch } from "react-redux";
-import { userActions } from "../store/user";
+
 import { getBaseUrl } from "../Api";
 import Popup from "../components/Modals/Feedback/Popup";
 
 function Login() {
-  const dispatch = useDispatch();
   const navigate = useNavigate(); // For navigating between secreens
   const [pop, setPop] = useState(false);
   const usernameRef = useRef();

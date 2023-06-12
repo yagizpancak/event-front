@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./UserSearch.module.css";
 import { IoMdSearch } from "react-icons/io";
-import { getReduxState } from "../store";
 import { useNavigate } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import UserCard from "../components/Cards/SearchCards/UserCard";
