@@ -42,7 +42,7 @@ const CreateEvent = (props) => {
     }
   };
 
-  const username = getReduxState().user.username;
+  const username = localStorage.getItem("username");
   const baseUrl = getBaseUrl();
 
   const submitHandler = (e) => {
