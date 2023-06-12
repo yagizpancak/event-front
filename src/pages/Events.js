@@ -19,28 +19,18 @@ import { BsArrowLeft } from "react-icons/bs";
 const Events = (props) => {
   const [tab, setTab] = useState("registered");
   const [footerIsVisible, setFooterIsVisible] = useState(true);
-  const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  const openModal = () => {
-    setModalIsVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalIsVisible(false);
-  };
+  function closeFooter() {
+    setFooterIsVisible(false);
+  }
+  function openFooter() {
+    setFooterIsVisible(true);
+  }
 
   const navigate = useNavigate();
   return (
     <>
       <div className={classes.home}>
-        {modalIsVisible && (
-          <Modal openModal={openModal} onClose={closeModal}>
-            <RegistrationsContainer>
-              <RegistrationItem />
-              <RegistrationItem />
-            </RegistrationsContainer>
-          </Modal>
-        )}
         <div className={classes.header}>
           <BsArrowLeft
             size={25}
@@ -77,75 +67,12 @@ const Events = (props) => {
           </div>
         </div>
 
-        {tab === "registered" && (
-          <RegContainer>
-            <RegEventCard
-              image={concer}
-              date="14 DEC-TUE 4:00 PM"
-              name="Tarkan Konseri"
-            />
-            <RegEventCard
-              image={basketball}
-              date="5ST JAN-SAT 7:30 AM"
-              name="Basketbol Maçı"
-            />
-            <RegEventCard
-              image={football}
-              date="17ST MAY-SAT 11:00 PM"
-              name="Halı Saha (14 kişi)"
-            />
-            <RegEventCard
-              image={tennis}
-              date="3ST JUNE-SAT 00:00 PM"
-              name="Tenis"
-            />
-            <RegEventCard
-              image={tennis}
-              date="3ST JUNE-SAT 00:00 PM"
-              name="Tenis"
-            />
-            <RegEventCard
-              image={tennis}
-              date="3ST JUNE-SAT 00:00 PM"
-              name="Tenis"
-            />
-            <RegEventCard
-              image={tennis}
-              date="3ST JUNE-SAT 00:00 PM"
-              name="Tenis"
-            />
-          </RegContainer>
-        )}
+        {tab === "registered" && <RegContainer />}
         {tab === "organized" && (
-          <OrgContainer>
-            <OrgEventCard
-              openModal={openModal}
-              image={concer}
-              date="14 DEC-TUE 4:00 PM"
-              name="Tarkan Konseri"
-            />
-            <OrgEventCard
-              openModal={openModal}
-              image={basketball}
-              date="5ST JAN-SAT 7:30 AM"
-              name="Basketbol Maçı"
-            />
-            <OrgEventCard
-              openModal={openModal}
-              image={football}
-              date="17ST MAY-SAT 11:00 PM"
-              name="Halı Saha (14 kişi)"
-            />
-            <OrgEventCard
-              openModal={openModal}
-              image={tennis}
-              date="3ST JUNE-SAT 00:00 PM"
-              name="Tenis"
-            />
-          </OrgContainer>
+          <OrgContainer closeFooter={closeFooter} openFooter={openFooter} />
         )}
       </div>
-      {!modalIsVisible && <Footer page="events" />}
+      {footerIsVisible && <Footer page="events" />}
     </>
   );
 };

@@ -35,8 +35,10 @@ function Login() {
       }),
     })
       .then((res) => {
-        console.log(res.status);
-        if (res.status === 400) {
+        return res.json();
+      })
+      .then((data) => {
+        if (!data.success) {
           console.log("aaaaaaaaaaaaa");
           setPop(true);
           setTimeout(() => {
@@ -44,14 +46,6 @@ function Login() {
           }, 4000);
           return null;
         }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        if (data === null) {
-          return;
-        }
-
         // console.log(
         //   dispatch(
         //     userActions.setUser({

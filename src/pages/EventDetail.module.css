@@ -17,17 +17,18 @@
 
 .headerImg {
   width: 100vw;
+  height: 30vh;
   margin-bottom: 3vh;
 }
 
 .title {
   margin-left: 4vw;
-  font-size: 3vh;
+  font-size: 1em;
   margin-bottom: 1vh;
 }
 .title2 {
   margin-left: 4vw;
-  font-size: 3vh;
+  font-size: 1em;
   margin-bottom: 4vh;
 }
 
@@ -83,4 +84,9 @@
   border: none;
   font-size: 2.3vh;
   margin-top: 3vh;
+}
+
+.pp {
+  height: 90%;
+  border-radius: 50%;
 }

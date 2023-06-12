@@ -9,13 +9,14 @@ import CreateEvent from "./pages/CreateEvent";
 import CompleteProfile from "./pages/CompleteProfile";
 import Events from "./pages/Events";
 import Mapp from "./pages/Mapp";
-import Organization from "./pages/Organization";
+
 import CreatePost from "./pages/CreatePost";
 import PostFeed from "./pages/PostFeed";
 import RegEventDetails from "./components/Cards/EventsCards/RegEventDetails";
 import UserSearch from "./pages/UserSearch";
 import OtherUserPage from "./pages/OtherUserPage";
 import { useState } from "react";
+import RegisteredsUsers from "./pages/RegisteredsUsers";
 
 function App() {
   const [title, setTitle] = useState("");
@@ -43,7 +44,7 @@ function App() {
         ></Route>
         <Route path="/Events" element={<Events />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
-        <Route path="/EventDetails" element={<EventDetails />}></Route>
+        <Route path="/EventDetails/:uuid" element={<EventDetails />}></Route>
         <Route
           path="/CreateEvent"
           element={
@@ -55,7 +56,7 @@ function App() {
           }
         ></Route>
         <Route path="/Map" element={<Mapp />}></Route>
-        <Route path="/Organization" element={<Organization />}></Route>
+        <Route path="/RegisteredUsers" element={<RegisteredsUsers />}></Route>
         <Route path="/CreatePost" element={<CreatePost />}></Route>
         <Route path="/PostFeed" element={<PostFeed />}></Route>
         <Route path="/RegEventDetails" element={<RegEventDetails />}></Route>

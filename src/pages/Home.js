@@ -92,11 +92,14 @@ const Home = (props) => {
 
         <div className={classes.eventContainer}>
           {events.map((item) => {
+            console.log("ITEM", item);
             return (
               <EventCard
                 imageUrl={item.imageUrl}
                 name={item.name}
                 date={item.startDate}
+                key={item.uuid}
+                uuid={item.uuid}
               />
             );
           })}
@@ -107,6 +110,8 @@ const Home = (props) => {
                   imageUrl={item.imageUrl}
                   name={item.name}
                   date={item.startDate}
+                  key={item.uuid}
+                  uuid={item.uuid}
                 />
               );
             })}

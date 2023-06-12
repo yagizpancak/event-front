@@ -9,14 +9,14 @@ const EventCard = (props) => {
   const baseUrl = getBaseUrl();
   const slicedBaseUrl = baseUrl.slice(0, -7);
   const event_uuid = props.imageUrl.substring(props.imageUrl.length - 32);
-  console.log("uu", event_uuid);
-  console.log(
-    `URL => ${slicedBaseUrl}api/v1/event-management/get-event-image/${event_uuid}`
-  );
+  console.log(props);
+  // console.log(
+  //   `URL => ${slicedBaseUrl}api/v1/event-management/get-event-image/${event_uuid}`
+  // );
   return (
     <div
       className={classes.eventCard}
-      onClick={() => navigate("/EventDetails")}
+      onClick={() => navigate(`/EventDetails/${props.uuid}`)}
     >
       <img
         src={`${slicedBaseUrl}/api/v1/event-management/get-event-image/${event_uuid}`}

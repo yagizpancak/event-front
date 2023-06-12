@@ -11,6 +11,9 @@
 .modal {
   position: fixed;
   bottom: 0vh;
+  left: 0vw;
+  opacity: 1;
+  z-index: 300;
   width: 100vw;
   height: 30vh;
   background-color: #e6e9f0;

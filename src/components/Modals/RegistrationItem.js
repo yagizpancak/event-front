@@ -3,24 +3,69 @@ import classes from "./RegistrationItem.module.css";
 import Mert from "../../assets/Mert.jpeg";
 import { BsCheckLg } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
+import { getBaseUrl } from "../../Api";
 
 const RegistrationItem = (props) => {
   const [status, setStatus] = useState("");
+  const baseUrl = getBaseUrl();
+  const imgUrl = `${baseUrl}${props.imgUrl.slice(7)}`;
+
+  console.log(localStorage.getItem("username"));
+  console.log(props.username);
+  console.log("AA", props.uuid);
+  const acceptHandler = () => {
+    fetch(`${baseUrl}/event-registration/accept-request`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        organizatorUsername: localStorage.getItem("username"),
+        userUsername: props.username,
+        eventId: props.uuid,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          props.onChange();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  const rejectHandler = () => {
+    fetch(`${baseUrl}/event-registration/reject-request`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        organizatorUsername: localStorage.getItem("username"),
+        userUsername: props.username,
+        eventId: props.uuid,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          props.onChange();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div className={classes.eventCard}>
-      <img
-        src={
-          "https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg"
-        }
-        className={classes.img}
-      />
-      <div className={classes.info}>mertkaracax </div>
+      <img src={imgUrl} className={classes.img} />
+      <div className={classes.info}>{props.username} </div>
       <div className={classes.btnContainer}>
         <div
-          onClick={() => {
-            setStatus("accepted");
-          }}
+          onClick={acceptHandler}
           className={classes.checkBtn}
           style={{
             backgroundColor: status === "accepted" ? "#d87c27" : "#80808082",
@@ -29,9 +74,7 @@ const RegistrationItem = (props) => {
           <BsCheckLg size={20} color="white" />
         </div>
         <div
-          onClick={() => {
-            setStatus("declined");
-          }}
+          onClick={rejectHandler}
           className={classes.checkBtn}
           style={{
             backgroundColor: status === "declined" ? "#d87c27" : "#80808082",

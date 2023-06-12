@@ -1,12 +1,12 @@
 import React from "react";
-import classes from "./Organization.module.css";
+import classes from "./RegisteredUsers.module.css";
 import Footer from "../components/General/Footer";
 
 import { useNavigate } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
-import UserCard from "../components/Cards/OrganizationCards/UserCard";
+import UserCard from "../components/Cards/RegisteredUsersCards/UserCard";
 
-const Organization = (props) => {
+const RegisteredsUsers = (props) => {
   const navigate = useNavigate();
   return (
     <div className={classes.home}>
@@ -29,4 +29,4 @@ const Organization = (props) => {
   );
 };
 
-export default Organization;
+export default RegisteredsUsers;
