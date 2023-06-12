@@ -33,7 +33,7 @@ const UserSearch = (props) => {
       });
   }, [input]);
 
-  console.log(getReduxState().user.username);
+  // console.log(getReduxState().user.username);
   return (
     <>
       <div className={classes.userSearch}>
