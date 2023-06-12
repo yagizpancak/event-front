@@ -5,6 +5,8 @@
   margin-bottom: 1.3vh;
   display: flex;
   border-radius: 2vh;
+  animation: slide-down 300ms ease-in forwards;
+  transition: 300ms;
 }
 
 .img {
@@ -58,5 +60,17 @@
 
   .location {
     font-size: 2.4vh;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-4vh);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0vh);
+    opacity: 1;
   }
 }

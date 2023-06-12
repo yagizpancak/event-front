@@ -21,10 +21,12 @@ const Home = (props) => {
   const [feed, setFeed] = useState([]);
   const loggedUser = localStorage.getItem("username"); // getReduxState().user.username;
 
+  const height = window.innerHeight;
+
   const baseUrl = getBaseUrl();
 
   useEffect(() => {
-    if (input && input.length >= 2) {
+    if (input && input.length) {
       fetch(`${baseUrl}/event-management/get-current-events/by-name/${input}`, {
         method: "GET",
         // headers: { "Content-Type": "application/json" },
@@ -58,9 +60,9 @@ const Home = (props) => {
 
   return (
     <>
-      <div className={classes.home}>
+      <div className={classes.home} style={{ height: height }}>
         <div className={classes.header}>
-          <span className={classes.location}>
+          <span className={classes.username}>
             {loggedUser} <AiFillCaretDown />
           </span>
           {/* <span className={classes.location}>Urla, İzmir</span> */}
@@ -100,15 +102,16 @@ const Home = (props) => {
             />
           );
         })}
-        {feed.map((item) => {
-          return (
-            <EventCard
-              imageUrl={item.imageUrl}
-              name={item.name}
-              date={item.startDate}
-            />
-          );
-        })}
+        {input === "" &&
+          feed.map((item) => {
+            return (
+              <EventCard
+                imageUrl={item.imageUrl}
+                name={item.name}
+                date={item.startDate}
+              />
+            );
+          })}
         {/* <EventCard image={tennis} date="3ST JUNE-SAT 00:00 PM" name="Tenis" /> */}
       </div>
       <Footer page="home" />

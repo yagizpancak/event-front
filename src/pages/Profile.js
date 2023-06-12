@@ -8,6 +8,7 @@ import Posts from "../components/ProfileTabs/Posts";
 import { getReduxState } from "../store/index";
 import { getBaseUrl } from "../Api";
 import { FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Profile = (props) => {
   const [tab, setTab] = useState("about");
@@ -21,6 +22,9 @@ const Profile = (props) => {
   const baseUrl = getBaseUrl();
   const slicedBasedUrl = baseUrl.slice(0, 24);
   const username = localStorage.getItem("username"); // getReduxState().user.username;
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log("1. useffect fetch url => ", `${baseUrl}/profile/${username}`);
 
@@ -65,6 +69,11 @@ const Profile = (props) => {
             color="white"
             className={classes.signOutBtn}
             size={25}
+            onClick={() => {
+              localStorage.setItem("username", "");
+              navigate("/");
+            }}
+            // style={{ top: tab === "posts" ? "1.5vh" : "3vh" }}
           />
         </div>
         <img

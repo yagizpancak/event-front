@@ -5,15 +5,16 @@ import PostCard from "../components/ProfileTabs/ProfileCards/PostCard";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/General/Footer";
 import { IoMdNotifications } from "react-icons/io";
+import { BsArrowLeft } from "react-icons/bs";
 const PostFeed = (props) => {
   const navigate = useNavigate();
   return (
     <>
       <div className={classes.header}>
-        <IoMdNotifications
+        <BsArrowLeft
           size={25}
           className={classes.backBtn}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/Homee")}
         />
         <span className={classes.pageTitle}>Post Feed</span>
       </div>

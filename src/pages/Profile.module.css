@@ -11,19 +11,19 @@
 
 .header {
   width: 100vw;
-  background: rgb(216, 124, 39);
-  background: linear-gradient(
-    180deg,
-    rgb(216, 124, 39) 0%,
-    rgba(236, 168, 73, 0.08735994397759106) 100%
-  );
+  background-color: #ea9b6b;
   transition: 500ms;
+  margin-bottom: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signOutBtn {
   position: absolute;
   right: 4vw;
-  top: 3vh;
+  /* top: 3vh; */
+  transition: 500ms;
 }
 
 .pp {

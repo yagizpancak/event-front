@@ -67,13 +67,13 @@ function CompleteProfile() {
         fetch(`${baseUrl}/users/profile-img/${username}`, {
           method: "POST",
           body: imgData,
-        })
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            console.log("img res data => ", data);
-          });
+        });
+        // .then((res) => {
+        //   return res.json();
+        // })
+        // .then((data) => {
+        //   console.log("img res data => ", data);
+        // });
         navigate("/Homee");
       })
       .catch((err) => console.log(err));

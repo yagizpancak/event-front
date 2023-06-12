@@ -1,0 +1,54 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 0vh;
+  width: 100vw;
+  height: 13%;
+  background-color: #e6e9f0;
+  border-bottom-left-radius: 2vh;
+  border-bottom-right-radius: 2vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 4s ease-out forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalTitle {
+  height: 10%;
+  margin-bottom: 1.2vh;
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+  color: #d87c27;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-7rem);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-7rem);
+  }
+}

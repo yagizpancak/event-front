@@ -1,8 +1,16 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import classes from "./Mapp.module.css";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 const Mapp = (props) => {
+  const [lat, setLat] = useState(1);
+  const [lng, setLng] = useState(1);
+
+  const center = useMemo(
+    () => ({ lat: 38.450794277983135, lng: 27.11426643281322 }),
+    []
+  );
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDkepILu101Ues0TVgkBOB7Ihj6Fk_YprM",
   });
@@ -11,18 +19,22 @@ const Mapp = (props) => {
   }
   return (
     <div className={classes.map}>
-      <Map />
+      <GoogleMap
+        zoom={12}
+        center={center}
+        mapContainerClassName="mapContainer"
+        onClick={(e) => {
+          console.log("latitide = ", e.latLng.lat());
+          console.log("longitude = ", e.latLng.lng());
+          setLat(e.latLng.lat());
+          setLng(e.latLng.lng());
+        }}
+      >
+        <Marker position={center} />
+        <Marker position={{ lat: lat, lng: lng }} />
+      </GoogleMap>
     </div>
   );
 };
-
-function Map() {
-  const center = useMemo(() => ({ lat: 49, lng: -80 }), []);
-  return (
-    <GoogleMap zoom={10} center={center} mapContainerClassName="mapContainer">
-      <Marker position={center} />
-    </GoogleMap>
-  );
-}
 
 export default Mapp;

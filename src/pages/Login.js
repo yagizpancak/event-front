@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useState } from "react";
 import classes from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import eventLogo from "../assets/eventLogo2.png";
@@ -7,11 +8,12 @@ import google from "../assets/search.png";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/user";
 import { getBaseUrl } from "../Api";
+import Popup from "../components/Modals/Feedback/Popup";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // For navigating between secreens
-
+  const [pop, setPop] = useState(false);
   const usernameRef = useRef();
   const passwordRef = useRef();
 
@@ -35,18 +37,23 @@ function Login() {
       }),
     })
       .then((res) => {
-        navigate("/CompleteProfile");
-        if (res.status === 404 || res.status === 401 || res.status === 400) {
-          const error = new Error("Username or password is wrong.");
-          throw error;
+        console.log(res.status);
+        if (res.status === 400) {
+          console.log("aaaaaaaaaaaaa");
+          setPop(true);
+          setTimeout(() => {
+            setPop(false);
+          }, 4000);
+          return null;
         }
         return res.json();
       })
       .then((data) => {
         console.log(data);
-        const user = {
-          username: username,
-        };
+        if (data === null) {
+          return;
+        }
+
         // console.log(
         //   dispatch(
         //     userActions.setUser({
@@ -60,11 +67,11 @@ function Login() {
         } else {
           navigate("/Homee");
         }
-      })
-      .catch((err) => console.log(err));
+      });
   };
   return (
     <div className={classes.container}>
+      {pop && <Popup title="Error" message="Username or password invalid" />}
       <img src={eventLogo}></img>
       <form className={classes.form} onSubmit={submitHandler}>
         <h2 className={classes.heading}>Sign In</h2>
