@@ -33,10 +33,10 @@ const Home = (props) => {
           return res.json();
         })
         .then((data) => {
-          if (data.events !== undefined) {
-            setEvents(data.events);
+          if (data.content !== undefined) {
+            setEvents(data.content);
           }
-          console.log(data.events);
+          console.log(data);
         });
     } else {
       setEvents([]);
@@ -52,6 +52,7 @@ const Home = (props) => {
           `${baseUrl}/event-feed/${loggedUser}`
         );
         console.log("FEED: ", data);
+        setFeed(data.events);
       });
   }, []);
 
@@ -99,7 +100,15 @@ const Home = (props) => {
             />
           );
         })}
-
+        {feed.map((item) => {
+          return (
+            <EventCard
+              imageUrl={item.imageUrl}
+              name={item.name}
+              date={item.startDate}
+            />
+          );
+        })}
         {/* <EventCard image={tennis} date="3ST JUNE-SAT 00:00 PM" name="Tenis" /> */}
       </div>
       <Footer page="home" />
