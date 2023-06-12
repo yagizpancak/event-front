@@ -7,15 +7,25 @@ import date from "../assets/Date.png";
 import location from "../assets/Location.png";
 import { getBaseUrl } from "../Api";
 import { getReduxState } from "../store";
+import Mapp from "./Mapp";
 
 const CreateEvent = (props) => {
   const navigate = useNavigate();
+  const [mapOn, setMapOn] = useState(false);
   const [description, setDescription] = useState("");
   const [eventPhoto, setEventPhoto] = useState(addPhoto);
   const [file, setFile] = useState();
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
 
   const nameRef = useRef();
   const userLimitRef = useRef();
+
+  function locationHandler(lat, lng) {
+    setLat(lat);
+    setLng(lng);
+    setMapOn(false);
+  }
 
   const handleFotoYukleme = (event) => {
     const file = event.target.files[0];
@@ -50,8 +60,8 @@ const CreateEvent = (props) => {
       },
       body: JSON.stringify({
         name: name,
-        locationX: "45.00",
-        locationY: "50.00",
+        locationX: lat,
+        locationY: lng,
         description: description,
         startDate: "2023-06-15 00:00:00",
         userLimit: 10,
@@ -77,18 +87,28 @@ const CreateEvent = (props) => {
       })
       .then((data) => {
         console.log(data);
-        navigate("/Home");
+        navigate("/Homee");
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <div className={classes.profile}>
+      <div style={{ height: 0 }}>
+        <Mapp mapOn={mapOn} locationHandler={locationHandler} />
+      </div>
+
       <div className={classes.header}>
         <BsArrowLeft
           size={25}
           className={classes.backBtn}
-          onClick={() => navigate("/Home")}
+          onClick={() => {
+            if (mapOn) {
+              setMapOn(false);
+            } else {
+              navigate("/Homee");
+            }
+          }}
         />
         <span className={classes.pageTitle}>Create Event</span>
       </div>
@@ -118,7 +138,12 @@ const CreateEvent = (props) => {
           <img src={date} className={classes.img2} />
           <input type="date" className={classes.dateInput}></input>
         </div>
-        <div className={classes.card}>
+        <div
+          className={classes.card}
+          onClick={() => {
+            setMapOn(true);
+          }}
+        >
           <img src={location} className={classes.img2} />
           <div className={classes.info}>Choose Location</div>
         </div>

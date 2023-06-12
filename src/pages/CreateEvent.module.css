@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: up 500ms ease-in forwards;
+  transition: 500ms;
 }
 
 .header {
@@ -148,4 +150,15 @@
   border: none;
   font-size: 2.3vh;
   margin-top: 7vh;
+}
+
+@keyframes up {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0vh);
+    opacity: 1;
+  }
 }

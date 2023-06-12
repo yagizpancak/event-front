@@ -63,7 +63,7 @@ const Profile = (props) => {
       <div className={classes.profile}>
         <div
           className={classes.header}
-          style={{ height: tab === "posts" ? "5vh" : "10vh" }}
+          style={{ height: tab === "posts" ? "5vh" : "8vh" }}
         >
           <FaSignOutAlt
             color="white"
