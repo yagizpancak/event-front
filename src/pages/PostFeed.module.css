@@ -1,8 +1,14 @@
+.postFeed {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
 .posts {
   box-sizing: border-box;
   padding: 2vh;
   width: 100vw;
-  height: 80vh;
+  height: 75%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

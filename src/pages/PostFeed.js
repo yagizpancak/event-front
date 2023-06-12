@@ -9,7 +9,7 @@ import { BsArrowLeft } from "react-icons/bs";
 const PostFeed = (props) => {
   const navigate = useNavigate();
   return (
-    <>
+    <div className={classes.postFeed}>
       <div className={classes.header}>
         <BsArrowLeft
           size={25}
@@ -41,7 +41,7 @@ const PostFeed = (props) => {
         />
       </div>
       <Footer page="posts" />
-    </>
+    </div>
   );
 };
 

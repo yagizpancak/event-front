@@ -7,16 +7,21 @@
   transform: translateX(-100vw);
   opacity: 0;
   animation: slide-right 500ms forwards;
+  overflow: hidden;
 }
 
 .header {
   width: 100vw;
-  background-color: #ea9b6b;
+  background: rgb(216, 124, 39);
+  background: linear-gradient(
+    180deg,
+    rgb(216, 124, 39) 0%,
+    rgba(236, 168, 73, 0.08735994397759106) 100%
+  );
   transition: 500ms;
   margin-bottom: 2vh;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .backBtn {

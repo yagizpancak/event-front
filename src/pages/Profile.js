@@ -62,14 +62,14 @@ const Profile = (props) => {
       <div className={classes.profile}>
         <div
           className={classes.header}
-          style={{ height: tab === "posts" ? "5vh" : "8vh" }}
+          style={{ height: tab === "posts" ? "5vh" : "10vh" }}
         >
           <BsArrowLeft
             size={25}
             className={classes.backBtn}
             onClick={() => navigate("/Homee")}
           />
-          <span className={classes.pageTitle}>Post Feed</span>
+          <span className={classes.pageTitle}>My Profile</span>
           <FaSignOutAlt
             color="black"
             className={classes.signOutBtn}
