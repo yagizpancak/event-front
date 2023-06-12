@@ -13,7 +13,9 @@ const CreateEvent = (props) => {
   const navigate = useNavigate();
   const [mapOn, setMapOn] = useState(false);
   const [description, setDescription] = useState("");
-  const [eventPhoto, setEventPhoto] = useState(addPhoto);
+  const [eventPhoto, setEventPhoto] = useState(
+    "https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0"
+  );
   const [file, setFile] = useState();
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
