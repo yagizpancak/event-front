@@ -2,7 +2,7 @@
   box-sizing: border-box;
   padding: 2vh;
   width: 100vw;
-  height: 40vh;
+  height: 50vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

@@ -20,7 +20,7 @@ const Footer = (props) => {
         />
       </span>
       <AiFillHome
-        onClick={() => navigate("/Home")}
+        onClick={() => navigate("/Homee")}
         size={30}
         color={props.page === "home" ? "#ea9b6b" : "gray"}
       />

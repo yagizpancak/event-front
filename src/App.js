@@ -14,6 +14,7 @@ import CreatePost from "./pages/CreatePost";
 import PostFeed from "./pages/PostFeed";
 import RegEventDetails from "./components/Cards/EventsCards/RegEventDetails";
 import UserSearch from "./pages/UserSearch";
+import OtherUserPage from "./pages/OtherUserPage";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/CompleteProfile" element={<CompleteProfile />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/Home" element={<Home />}></Route>
+        <Route path="/Homee" element={<Home />}></Route>
         <Route path="/Events" element={<Events />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/EventDetails" element={<EventDetails />}></Route>
@@ -33,6 +34,10 @@ function App() {
         <Route path="/PostFeed" element={<PostFeed />}></Route>
         <Route path="/RegEventDetails" element={<RegEventDetails />}></Route>
         <Route path="/UserSearch" element={<UserSearch />}></Route>
+        <Route
+          path="/OtherUserPage/:username"
+          element={<OtherUserPage />}
+        ></Route>
       </Routes>
     </Router>
   );

@@ -26,9 +26,10 @@
 
 .searchInp {
   width: 60vw;
+  font-size: 2vh;
   height: 4vh;
   box-sizing: border-box;
-  padding: 2vh;
+  padding-left: 2vh;
   border-radius: 3vh;
   border: none;
 }

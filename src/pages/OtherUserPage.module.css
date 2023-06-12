@@ -20,16 +20,22 @@
   transition: 500ms;
 }
 
-.signOutBtn {
-  position: absolute;
-  right: 4vw;
-  top: 3vh;
-}
-
 .pp {
   border-radius: 50%;
   margin-bottom: 2vh;
   transition: 700ms;
+}
+
+.followBtn {
+  width: 30vw;
+  height: 5vh;
+  /* background-color: orange; */
+  color: white;
+  margin-top: 2vh;
+  border-radius: 2vh;
+  border: none;
+  font-size: 2vh;
+  transition: 500ms;
 }
 
 .followContainer {

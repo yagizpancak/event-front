@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from "react";
 import classes from "./UserSearch.module.css";
-import { AiFillCaretDown } from "react-icons/ai";
-import Footer from "../components/General/Footer";
-import EventCard from "../components/Cards/HomeCards/EventCard";
-import basketball from "../assets/basketball.png";
-import tennis from "../assets/tennis.png";
-import football from "../assets/football.png";
-
-import concer from "../assets/concer.png";
 import { IoMdSearch } from "react-icons/io";
 import { getReduxState } from "../store";
 import { useNavigate } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import UserCard from "../components/Cards/SearchCards/UserCard";
+import { getBaseUrl } from "../Api";
 
 const UserSearch = (props) => {
   const navigate = useNavigate();
-  const [input, setInput] = useState("ya");
+  const [input, setInput] = useState("");
+  const [users, setUsers] = useState([]);
+
+  const baseUrl = getBaseUrl();
 
   useEffect(() => {
-    fetch(`https://18.196.203.49:8443/api/v1/users/search-user/${input}`, {
+    if (input === "") {
+      setUsers([]);
+    }
+    fetch(`${baseUrl}/users/search-user/${input}`, {
       method: "GET",
       // headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
         return res.json();
       })
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.usersInfo !== undefined) {
+          setUsers(data.usersInfo);
+        }
+        console.log(data);
+      });
   }, [input]);
 
   console.log(getReduxState().user.username);
@@ -37,13 +41,14 @@ const UserSearch = (props) => {
           <BsArrowLeft
             size={25}
             className={classes.backBtn}
-            onClick={() => navigate("/Home")}
+            onClick={() => navigate("/Homee")}
             color="white"
           />
           <input
             type="text"
             onChange={(e) => setInput(e.target.value)}
             className={classes.searchInp}
+            placeholder="Search"
           ></input>
           <IoMdSearch
             size={30}
@@ -54,12 +59,15 @@ const UserSearch = (props) => {
             }}
           />
         </div>
-
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
+        {users.map((user) => {
+          return (
+            <UserCard
+              key={user.imageUrl}
+              username={user.username}
+              imgUrl={`${baseUrl}/users/profile-img/${user.username}`}
+            />
+          );
+        })}
       </div>
     </>
   );

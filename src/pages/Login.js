@@ -6,6 +6,7 @@ import facebook from "../assets/facebook.png";
 import google from "../assets/search.png";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/user";
+import { getBaseUrl } from "../Api";
 
 function Login() {
   const dispatch = useDispatch();
@@ -15,46 +16,51 @@ function Login() {
   const passwordRef = useRef();
 
   const submitHandler = (e) => {
-    // e.preventDefault();
-    // console.log("bastı");
+    e.preventDefault();
+    console.log("bastı");
 
-    // const username = usernameRef.current.value;
-    // const password = passwordRef.current.value;
+    const baseUrl = getBaseUrl();
 
-    // fetch("http://3.68.226.30:8080/api/v1/users/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    //   }),
-    // })
-    //   .then((res) => {
-    //     navigate("/CompleteProfile");
-    //     if (res.status === 404 || res.status === 401 || res.status === 400) {
-    //       const error = new Error("Username or password is wrong.");
-    //       throw error;
-    //     }
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     const user = {
-    //       username: username,
-    //     };
-    //     console.log(
-    //       dispatch(
-    //         userActions.setUser({
-    //           username: user.username,
-    //         })
-    //       )
-    //     );
-    //     // navigate("/CompleteProfile");
-    //   })
-    //   .catch((err) => console.log(err));
-    navigate("/CompleteProfile");
+    const username = usernameRef.current.value;
+    const password = passwordRef.current.value;
+
+    fetch(`${baseUrl}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((res) => {
+        navigate("/CompleteProfile");
+        if (res.status === 404 || res.status === 401 || res.status === 400) {
+          const error = new Error("Username or password is wrong.");
+          throw error;
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const user = {
+          username: username,
+        };
+        console.log(
+          dispatch(
+            userActions.setUser({
+              username: user.username,
+            })
+          )
+        );
+        if (data.profileInfoFilled === false) {
+          navigate("/CompleteProfile");
+        } else {
+          navigate("/Home");
+        }
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div className={classes.container}>

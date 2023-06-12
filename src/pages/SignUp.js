@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import facebook from "../assets/facebook.png";
 import google from "../assets/search.png";
 import { BsArrowLeft } from "react-icons/bs";
+import { getBaseUrl } from "../Api";
 
 function SignUp() {
   const navigate = useNavigate(); // For navigating between secreens
@@ -21,31 +22,31 @@ function SignUp() {
       return;
     }
 
+    const baseUrl = getBaseUrl();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
     const email = emailRef.current.value;
 
-    // fetch("http://3.68.226.30:8080/api/v1/users/signup", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    //     email: email,
-    //   }),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 404 || res.status === 401) {
-    //       const error = new Error("Username or password is wrong.");
-    //       throw error;
-    //     }
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     navigate("/");
-    //   });
-    // .catch((err) => dispatch(uiActions.toggle()));
+    console.log(`${baseUrl}/users/signup`);
+
+    fetch(`${baseUrl}/users/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        email: email,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/");
+        } else {
+          const error = new Error("Sign up error " + res.status);
+          throw error;
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
