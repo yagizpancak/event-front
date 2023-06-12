@@ -9,6 +9,7 @@ import { getReduxState } from "../store/index";
 import { getBaseUrl } from "../Api";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { BsArrowLeft } from "react-icons/bs";
 
 const Profile = (props) => {
   const [tab, setTab] = useState("about");
@@ -65,6 +66,12 @@ const Profile = (props) => {
           className={classes.header}
           style={{ height: tab === "posts" ? "5vh" : "8vh" }}
         >
+          <BsArrowLeft
+            size={25}
+            className={classes.backBtn}
+            onClick={() => navigate("/Homee")}
+          />
+          <span className={classes.pageTitle}>Post Feed</span>
           <FaSignOutAlt
             color="white"
             className={classes.signOutBtn}

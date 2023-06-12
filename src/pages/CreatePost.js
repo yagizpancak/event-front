@@ -65,7 +65,7 @@ const CreatePost = (props) => {
           style={{ marginLeft: 10 }}
           size={20}
           onClick={() => {
-            navigate("/Home");
+            navigate("/Homee");
           }}
         />
       </button>

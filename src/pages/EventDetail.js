@@ -57,7 +57,7 @@ function EventDetails() {
         <BsArrowRight
           style={{ marginLeft: 10 }}
           size={20}
-          onClick={() => navigate("/Home")}
+          onClick={() => navigate("/Homee")}
         />
       </button>
     </div>
