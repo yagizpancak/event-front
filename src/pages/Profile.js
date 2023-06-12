@@ -71,7 +71,7 @@ const Profile = (props) => {
           />
           <span className={classes.pageTitle}>Post Feed</span>
           <FaSignOutAlt
-            color="white"
+            color="black"
             className={classes.signOutBtn}
             size={25}
             onClick={() => {

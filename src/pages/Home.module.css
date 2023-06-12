@@ -21,7 +21,7 @@
   padding-top: 6vh;
   /* justify-content: center; */
   flex-direction: column;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
 }
 
 .notification {
@@ -82,6 +82,11 @@
 
 .input:focus {
   outline: none;
+}
+
+.eventContainer {
+  height: 65%;
+  overflow-y: scroll;
 }
 
 .img {

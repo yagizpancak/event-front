@@ -15,19 +15,45 @@ import PostFeed from "./pages/PostFeed";
 import RegEventDetails from "./components/Cards/EventsCards/RegEventDetails";
 import UserSearch from "./pages/UserSearch";
 import OtherUserPage from "./pages/OtherUserPage";
+import { useState } from "react";
 
 function App() {
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
+  const [pop, setPop] = useState(false);
+
+  const popHandler = (title, message) => {
+    setTitle(title);
+    setMessage(message);
+    setPop(true);
+    setTimeout(() => {
+      setPop(false);
+    }, 4000);
+  };
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/CompleteProfile" element={<CompleteProfile />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/Homee" element={<Home />}></Route>
+        <Route
+          path="/Homee"
+          element={<Home pop={pop} title={title} message={message} />}
+        ></Route>
         <Route path="/Events" element={<Events />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/EventDetails" element={<EventDetails />}></Route>
-        <Route path="/CreateEvent" element={<CreateEvent />}></Route>
+        <Route
+          path="/CreateEvent"
+          element={
+            <CreateEvent
+              popHandler={popHandler}
+              title={title}
+              message={message}
+            />
+          }
+        ></Route>
         <Route path="/Map" element={<Mapp />}></Route>
         <Route path="/Organization" element={<Organization />}></Route>
         <Route path="/CreatePost" element={<CreatePost />}></Route>

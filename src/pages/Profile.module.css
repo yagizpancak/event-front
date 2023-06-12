@@ -22,13 +22,11 @@
 .backBtn {
   position: absolute;
   left: 5vw;
-  margin-top: 2vh;
 }
 
 .pageTitle {
   position: absolute;
   left: 15vw;
-  margin-top: 2vh;
   font-weight: 300;
   font-size: 2.8vh;
   color: black;

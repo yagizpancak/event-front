@@ -29,7 +29,7 @@
   margin-top: 2vh;
   display: flex;
   font-size: 2.2vh;
-  margin-left: 8vw;
+  align-self: center;
   align-items: center;
   color: #d87c27;
 }

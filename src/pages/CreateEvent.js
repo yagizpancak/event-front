@@ -87,16 +87,11 @@ const CreateEvent = (props) => {
         }).then((res) => console.log(res));
       })
       .then((res) => {
-        if (res.status === 404 || res.status === 401 || res.status === 400) {
-          const error = new Error("Username or password is wrong.");
-          throw error;
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
+        console.log(res);
         navigate("/Homee");
+        props.popHandler("Success", "Your event is added successfully.");
       })
+
       .catch((err) => console.log(err));
   };
 

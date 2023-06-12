@@ -6,6 +6,8 @@ import EventCard from "../components/Cards/HomeCards/EventCard";
 import { IoMdNotifications, IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { getBaseUrl } from "../Api";
+import Modal from "../components/Modals/Modal";
+import Popup from "../components/Modals/Feedback/Popup";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -55,6 +57,7 @@ const Home = (props) => {
   return (
     <>
       <div className={classes.home} style={{ height: height }}>
+        {props.pop && <Popup title={props.title} message={props.message} />}
         <div className={classes.header}>
           <span className={classes.username}>
             {loggedUser} <AiFillCaretDown />
@@ -85,19 +88,10 @@ const Home = (props) => {
           </div>
         </div>
 
-        <h4 className={classes.upcomingEvents}>Upcoming Events</h4>
+        <h4 className={classes.upcomingEvents}>Events Feed</h4>
 
-        {events.map((item) => {
-          return (
-            <EventCard
-              imageUrl={item.imageUrl}
-              name={item.name}
-              date={item.startDate}
-            />
-          );
-        })}
-        {input === "" &&
-          feed.map((item) => {
+        <div className={classes.eventContainer}>
+          {events.map((item) => {
             return (
               <EventCard
                 imageUrl={item.imageUrl}
@@ -106,6 +100,17 @@ const Home = (props) => {
               />
             );
           })}
+          {input === "" &&
+            feed.map((item) => {
+              return (
+                <EventCard
+                  imageUrl={item.imageUrl}
+                  name={item.name}
+                  date={item.startDate}
+                />
+              );
+            })}
+        </div>
         {/* <EventCard image={tennis} date="3ST JUNE-SAT 00:00 PM" name="Tenis" /> */}
       </div>
       <Footer page="home" />

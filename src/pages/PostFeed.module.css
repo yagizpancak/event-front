@@ -21,18 +21,19 @@
     rgb(216, 124, 39) 0%,
     rgba(236, 168, 73, 0.08735994397759106) 100%
   );
+  display: flex;
+  align-items: center;
 }
 
 .backBtn {
   position: absolute;
   left: 5vw;
-  top: 5vh;
 }
 
 .pageTitle {
   position: absolute;
   left: 15vw;
-  top: 5vh;
+
   font-weight: 300;
   font-size: 2.8vh;
   color: black;
