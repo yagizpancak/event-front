@@ -33,10 +33,10 @@ const Home = (props) => {
           return res.json();
         })
         .then((data) => {
-          if (data.content !== undefined) {
-            setEvents(data.content);
+          if (data.events !== undefined) {
+            setEvents(data.events);
           }
-          console.log(data);
+          console.log(data.events);
         });
     } else {
       setEvents([]);
