@@ -20,7 +20,7 @@ const OtherUserPage = (props) => {
   const [followings, setFollowings] = useState("-");
 
   const { username } = useParams();
-  const loggedUser = getReduxState().user.username;
+  const loggedUser = localStorage.getItem("username"); //getReduxState().user.username;
   console.log("logged user ", loggedUser);
 
   const baseUrl = getBaseUrl();

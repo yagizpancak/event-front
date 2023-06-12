@@ -19,7 +19,7 @@ const Home = (props) => {
   const [input, setInput] = useState("");
   const [events, setEvents] = useState([]);
   const [feed, setFeed] = useState([]);
-  const loggedUser = getReduxState().user.username;
+  const loggedUser = localStorage.getItem("username"); // getReduxState().user.username;
 
   const baseUrl = getBaseUrl();
 

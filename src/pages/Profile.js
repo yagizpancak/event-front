@@ -20,8 +20,7 @@ const Profile = (props) => {
 
   const baseUrl = getBaseUrl();
   const slicedBasedUrl = baseUrl.slice(0, 24);
-  const username = getReduxState().user.username;
-
+  const username = localStorage.getItem("username"); // getReduxState().user.username;
   useEffect(() => {
     console.log("1. useffect fetch url => ", `${baseUrl}/profile/${username}`);
 

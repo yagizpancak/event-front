@@ -30,7 +30,7 @@ function CompleteProfile() {
     }
   };
 
-  const username = getReduxState().user.username;
+  const username = localStorage.getItem("username"); // getReduxState().user.username;
   const firstNameRef = useRef();
   const lastNameRef = useRef();
 

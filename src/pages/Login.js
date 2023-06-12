@@ -47,17 +47,18 @@ function Login() {
         const user = {
           username: username,
         };
-        console.log(
-          dispatch(
-            userActions.setUser({
-              username: user.username,
-            })
-          )
-        );
+        // console.log(
+        //   dispatch(
+        //     userActions.setUser({
+        //       username: user.username,
+        //     })
+        //   )
+        // );
+        localStorage.setItem("username", username);
         if (data.profileInfoFilled === false) {
           navigate("/CompleteProfile");
         } else {
-          navigate("/Home");
+          navigate("/Homee");
         }
       })
       .catch((err) => console.log(err));
