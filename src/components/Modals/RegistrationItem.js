@@ -9,7 +9,12 @@ const RegistrationItem = (props) => {
 
   return (
     <div className={classes.eventCard}>
-      <img src={Mert} className={classes.img} />
+      <img
+        src={
+          "https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg"
+        }
+        className={classes.img}
+      />
       <div className={classes.info}>mertkaracax </div>
       <div className={classes.btnContainer}>
         <div
