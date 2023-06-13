@@ -28,13 +28,10 @@ const OrgContainer = (props) => {
   };
 
   useEffect(() => {
-    console.log(`${baseUrl}/event-management/get-by-organizator/${username}`);
     fetch(`${baseUrl}/event-management/get-by-organizator/${username}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setEvents(data.events);
-        console.log("a", data.events);
+        setEvents(data.events.filter((item) => !item.isClosed));
       });
   }, [modalIsVisible]);
 

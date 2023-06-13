@@ -81,10 +81,13 @@ const CreateEvent = (props) => {
       })
       .then((data) => {
         const slicedBaseUrl = baseUrl.slice(0, -7);
-        fetch(`${slicedBaseUrl}${data.imageUrl}`, {
-          method: "POST",
-          body: imgData,
-        }).then((res) => console.log(res));
+        fetch(
+          `${baseUrl}/event-management/event-img/${data.imageUrl.slice(-32)}`,
+          {
+            method: "POST",
+            body: imgData,
+          }
+        ).then((res) => console.log(res));
       })
       .then((res) => {
         console.log(res);

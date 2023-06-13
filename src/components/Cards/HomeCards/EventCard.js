@@ -4,12 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { getBaseUrl } from "../../../Api";
 
 const EventCard = (props) => {
-  console.log("aa", props.imageUrl);
   const navigate = useNavigate();
   const baseUrl = getBaseUrl();
   const slicedBaseUrl = baseUrl.slice(0, -7);
   const event_uuid = props.imageUrl.substring(props.imageUrl.length - 32);
-  console.log(props);
+  // console.log(props);
   // console.log(
   //   `URL => ${slicedBaseUrl}api/v1/event-management/get-event-image/${event_uuid}`
   // );

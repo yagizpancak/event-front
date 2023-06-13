@@ -13,7 +13,7 @@ const Profile = (props) => {
   const [tab, setTab] = useState("about");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState(undefined);
   const [bioInformation, setBioInformation] = useState("");
   const [follower, setFollower] = useState("-");
   const [following, setFollowing] = useState("-");
@@ -25,18 +25,18 @@ const Profile = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("1. useffect fetch url => ", `${baseUrl}/profile/${username}`);
+    // console.log("1. useffect fetch url => ", `${baseUrl}/profile/${username}`);
 
     fetch(`${baseUrl}/users/profile/${username}`, {
       method: "GET",
       //   headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
-        console.log("profile info fetch res => ", res);
+        // console.log("profile info fetch res => ", res);
         return res.json();
       })
       .then((data) => {
-        console.log("Profile info data=> ", data);
+        // console.log("Profile info data=> ", data);
         setFirstName(data.firstName);
         setLastName(data.lastName);
         setImgUrl(data.imgUrl);
@@ -82,11 +82,11 @@ const Profile = (props) => {
           />
         </div>
         <img
-          src={imgUrl && `${slicedBasedUrl}${imgUrl}`}
+          src={imgUrl && `${baseUrl}${imgUrl.slice(7)}`}
           className={classes.pp}
           style={{
-            width: tab === "posts" ? "10vh" : "15vh",
-            height: tab === "posts" ? "10vh" : "15vh",
+            width: tab === "event" ? "10vh" : "15vh",
+            height: tab === "event" ? "10vh" : "15vh",
           }}
         />
         <h5 style={{ fontSize: 20, fontWeight: 500, letterSpacing: 2 }}>
@@ -97,7 +97,7 @@ const Profile = (props) => {
         )}`}</span>
         <div
           className={classes.followContainer}
-          style={{ marginTop: tab === "posts" ? "1vh" : "3vh" }}
+          style={{ marginTop: tab === "event" ? "1vh" : "3vh" }}
         >
           <div className={classes.followingContainer}>
             <span style={{ fontWeight: 500, fontSize: 18 }}>{follower}</span>
@@ -127,7 +127,7 @@ const Profile = (props) => {
           >
             EVENTS
           </div>
-          <div
+          {/* <div
             className={classes.tab}
             style={{ borderBottom: tab === "posts" && "3px solid orange" }}
             onClick={() => {
@@ -135,7 +135,7 @@ const Profile = (props) => {
             }}
           >
             POSTS
-          </div>
+          </div> */}
         </div>
         {tab === "about" && <About bio={bioInformation} />}
         {tab === "event" && <Event />}

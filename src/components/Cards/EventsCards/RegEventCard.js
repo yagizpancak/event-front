@@ -12,7 +12,7 @@ const RegEventCard = (props) => {
   return (
     <div
       className={classes.eventCard}
-      onClick={() => navigate("/RegEventDetails")}
+      // onClick={() => navigate("/RegEventDetails")}
     >
       <img
         src={`${baseUrl}${props.event.imageUrl.slice(7)}`}

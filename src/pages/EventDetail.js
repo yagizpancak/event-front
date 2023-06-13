@@ -1,10 +1,8 @@
 import classes from "./EventDetail.module.css";
 import { useNavigate, useParams } from "react-router-dom";
-import concer from "../assets/concer.png";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import date from "../assets/Date.png";
 import location from "../assets/Location.png";
-import milyonfest from "../assets/Milyonfest.png";
 import { useEffect, useState } from "react";
 import { getBaseUrl } from "../Api";
 
@@ -37,7 +35,7 @@ function EventDetails() {
     fetch(`${baseUrl}/event-management/getById/${uuid}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("eventdata", data);
         console.log(
           "OFF",
           `${baseUrl}/users/profile/${data.organizatorUsername}`
@@ -63,29 +61,36 @@ function EventDetails() {
   return (
     <div className={classes.container}>
       <BsArrowLeft
-        size={25}
+        size={30}
         className={classes.backBtn}
-        onClick={() => navigate("/Events")}
+        onClick={() => navigate("/Homee")}
       />
       <img
         src={event && `${baseUrl}${event && event.imageUrl.slice(7)}`}
         className={classes.headerImg}
       ></img>
-      <span className={classes.title}>{event && event.name}</span>
+      <div className={classes.title}>{event && event.name}</div>
       {/* <span className={classes.title2}>İzmir, Alsancak</span> */}
       <div className={classes.dateContainer}>
         <img src={date}></img>
         <div className={classes.textContainer}>
-          <span style={{ fontSize: 18 }}>{event && event.startDate}</span>
+          <span style={{ fontSize: 18 }}>
+            {event && event.startDate.replace("T", " ").slice(0, -3)}
+          </span>
           {/* <span style={{ color: "gray", fontSize: 15 }}>
             
           </span> */}
         </div>
       </div>
-      <div className={classes.dateContainer}>
+      <div
+        className={classes.dateContainer}
+        onClick={() => {
+          navigate(`/ShowLocation/${event.locationX}/${event.locationY}`);
+        }}
+      >
         <img src={location}></img>
         <div className={classes.textContainer}>
-          <span style={{ fontSize: 18 }}>Konumu Görüntüle</span>
+          <span style={{ fontSize: 18 }}>Show Location</span>
           {/* <span style={{ color: "gray", fontSize: 15 }}>
             Atatürk Caddesi No:312
           </span> */}
@@ -113,11 +118,8 @@ function EventDetails() {
         </div>
         {/* <button className={classes.followBtn}>Follow</button> */}
       </div>
-      <span className={classes.aboutTitle}>About Event</span>
-      <p className={classes.aboutText}>
-        23 Haziran 2023'te hepinizi eğlencenin merkezine davet ediyoruz. Takipte
-        kalın.
-      </p>
+      <div className={classes.aboutTitle}>About Event</div>
+      <p className={classes.aboutText}>{event && event.description}</p>
 
       <button className={classes.registerBtn} onClick={registerHandler}>
         REGISTER

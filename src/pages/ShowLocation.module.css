@@ -1,0 +1,69 @@
+.map {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: up 500ms ease-in forwards;
+  transition: 500ms;
+  overflow-y: hidden;
+}
+
+.mapContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn {
+  width: 40vw;
+  border-radius: 2vh;
+  border: none;
+  background-color: orange;
+  z-index: 4;
+  position: fixed;
+  margin: auto;
+  font-size: 2vh;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 4px;
+  transition: 500ms;
+}
+
+.header {
+  height: 10vh;
+  width: 100vw;
+  background: rgb(216, 124, 39);
+  background: linear-gradient(
+    180deg,
+    rgb(216, 124, 39) 0%,
+    rgba(236, 168, 73, 0.08735994397759106) 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
+.backBtn {
+  position: absolute;
+  left: 5vw;
+}
+
+.pageTitle {
+  position: absolute;
+  left: 15vw;
+
+  font-weight: 300;
+  font-size: 2.8vh;
+  color: black;
+}
+
+@keyframes right {
+  from {
+    transform: translateX(-50vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0vh);
+    opacity: 1;
+  }
+}
