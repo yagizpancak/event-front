@@ -22,17 +22,23 @@ const Event = (props) => {
   return (
     <>
       <div className={classes.event}>
-        {events.map((item) => {
-          return (
-            <EventCard
-              key={item.uuid}
-              imgUrl={item.imageUrl}
-              date={item.startDate}
-              name={item.name}
-              isClosed={item.isClosed}
-            />
-          );
-        })}
+        {events
+          .sort((event1, event2) => {
+            if (event1.startDate > event2.startDate) {
+              return -1;
+            }
+          })
+          .map((item) => {
+            return (
+              <EventCard
+                key={item.uuid}
+                imgUrl={item.imageUrl}
+                date={item.startDate}
+                name={item.name}
+                isClosed={item.isClosed}
+              />
+            );
+          })}
       </div>
     </>
   );

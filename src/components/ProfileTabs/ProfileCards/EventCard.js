@@ -7,12 +7,19 @@ const EventCard = (props) => {
   const navigate = useNavigate();
   const baseUrl = getBaseUrl();
 
-  const dateString = !props.isClosed ? (
+  const timestamp = new Date(Date.parse(props.date));
+
+  const dateString = props.isClosed ? (
     <span style={{ color: "red" }}>
-      CLOSED <span style={{ color: "orange" }}>{props.date}</span>
+      CLOSED
+      <span style={{ color: "orange" }}>
+        {timestamp.toLocaleDateString()} {timestamp.toLocaleTimeString()}
+      </span>
     </span>
   ) : (
-    props.date
+    <span>
+      {timestamp.toLocaleDateString()} {timestamp.toLocaleTimeString()}
+    </span>
   );
   return (
     <div className={classes.eventCard}>

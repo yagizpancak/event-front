@@ -35,7 +35,12 @@ const PostFeed = (props) => {
       <div className={classes.posts}>
         {events.map((item) => {
           return (
-            <PostCard key={item.uuid} name={item.name} imgUrl={item.imageUrl} />
+            <PostCard
+              uuid={item.uuid}
+              key={item.uuid}
+              name={item.name}
+              imgUrl={item.imageUrl}
+            />
           );
         })}
       </div>
