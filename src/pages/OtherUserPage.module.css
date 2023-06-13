@@ -18,6 +18,9 @@
     rgba(236, 168, 73, 0.08735994397759106) 100%
   );
   transition: 500ms;
+  margin-bottom: 2vh;
+  display: flex;
+  align-items: center;
 }
 
 .pp {
@@ -81,6 +84,31 @@
   align-items: center;
   justify-content: center;
 }
+
+.backBtn {
+  position: absolute;
+  left: 5vw;
+}
+
+.pageTitle {
+  position: absolute;
+  left: 15vw;
+  font-weight: 300;
+  font-size: 2.8vh;
+  color: black;
+}
+
+.signOutBtn {
+  position: absolute;
+  right: 4vw;
+  /* top: 3vh; */
+  transition: 500ms;
+}
+.username {
+  color: gray;
+  margin-top: 0.5vh;
+}
+
 @keyframes slide-right {
   0% {
     transform: translateX(-100vw);

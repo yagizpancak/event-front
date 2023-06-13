@@ -12,6 +12,7 @@ const PostFeed = (props) => {
   const navigate = useNavigate();
   const baseUrl = getBaseUrl();
   const [events, setEvents] = useState([]);
+  const height = window.innerHeight;
 
   useEffect(() => {
     fetch(
@@ -23,7 +24,7 @@ const PostFeed = (props) => {
       .then((data) => setEvents(data.events));
   }, []);
   return (
-    <div className={classes.postFeed}>
+    <div className={classes.postFeed} style={{ height: height }}>
       <div className={classes.header}>
         <BsArrowLeft
           size={25}

@@ -10,6 +10,7 @@ const UserSearch = (props) => {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [users, setUsers] = useState([]);
+  const height = window.innerHeight;
 
   const baseUrl = getBaseUrl();
 
@@ -35,7 +36,7 @@ const UserSearch = (props) => {
   // console.log(getReduxState().user.username);
   return (
     <>
-      <div className={classes.userSearch}>
+      <div className={classes.userSearch} style={{ height: height }}>
         <div className={classes.header}>
           <BsArrowLeft
             size={25}

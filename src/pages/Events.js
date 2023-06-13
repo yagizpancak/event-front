@@ -19,6 +19,7 @@ import { BsArrowLeft } from "react-icons/bs";
 const Events = (props) => {
   const [tab, setTab] = useState("registered");
   const [footerIsVisible, setFooterIsVisible] = useState(true);
+  const height = window.innerHeight;
 
   function closeFooter() {
     setFooterIsVisible(false);
@@ -30,7 +31,7 @@ const Events = (props) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className={classes.home}>
+      <div className={classes.home} style={{ height: height }}>
         <div className={classes.header}>
           <BsArrowLeft
             size={25}
