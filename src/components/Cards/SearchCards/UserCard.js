@@ -11,7 +11,7 @@ const UserCard = (props) => {
   const [imgSrc, setImgSrc] = useState(user);
   const navigate = useNavigate();
 
-  console.log(props.imgUrl);
+  // console.log(props.imgUrl);
   const baseUrl = getBaseUrl();
 
   useEffect(() => {

@@ -8,6 +8,8 @@ const OrgEventCard = (props) => {
   const baseUrl = getBaseUrl();
   const [reqCount, setReqCount] = useState(0);
 
+  const timestamp = new Date(Date.parse(props.startDate));
+
   useEffect(() => {
     fetch(
       `${baseUrl}/event-registration/registered-users-count/waiting/${props.uuid}`
@@ -26,16 +28,18 @@ const OrgEventCard = (props) => {
         src={props.imgUrl}
         className={classes.img}
         onClick={() => {
-          navigate("/RegisteredUsers");
+          navigate(`/RegisteredUsers/${props.uuid}`);
         }}
       />
       <div
         className={classes.info}
         onClick={() => {
-          navigate("/Organization");
+          navigate(`/RegisteredUsers/${props.uuid}`);
         }}
       >
-        <span className={classes.date}>{props.date}</span>
+        <span className={classes.date}>
+          {timestamp.toLocaleDateString()} {timestamp.toLocaleTimeString()}{" "}
+        </span>
         <span className={classes.location}>{props.name}</span>
       </div>
       <div

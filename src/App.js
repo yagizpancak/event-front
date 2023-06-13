@@ -17,6 +17,7 @@ import UserSearch from "./pages/UserSearch";
 import OtherUserPage from "./pages/OtherUserPage";
 import { useState } from "react";
 import RegisteredsUsers from "./pages/RegisteredsUsers";
+import ShowLocation from "./pages/ShowLocation";
 
 function App() {
   const [title, setTitle] = useState("");
@@ -56,7 +57,10 @@ function App() {
           }
         ></Route>
         <Route path="/Map" element={<Mapp />}></Route>
-        <Route path="/RegisteredUsers" element={<RegisteredsUsers />}></Route>
+        <Route
+          path="/RegisteredUsers/:uuid"
+          element={<RegisteredsUsers />}
+        ></Route>
         <Route path="/CreatePost" element={<CreatePost />}></Route>
         <Route path="/PostFeed" element={<PostFeed />}></Route>
         <Route path="/RegEventDetails" element={<RegEventDetails />}></Route>
@@ -64,6 +68,10 @@ function App() {
         <Route
           path="/OtherUserPage/:username"
           element={<OtherUserPage />}
+        ></Route>
+        <Route
+          path="/ShowLocation/:lat/:lng"
+          element={<ShowLocation />}
         ></Route>
       </Routes>
     </Router>

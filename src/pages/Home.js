@@ -15,11 +15,27 @@ const Home = (props) => {
   const [input, setInput] = useState("");
   const [events, setEvents] = useState([]);
   const [feed, setFeed] = useState([]);
+  const [randomEvents, setRandomEvents] = useState([]);
   const loggedUser = localStorage.getItem("username"); // getReduxState().user.username;
 
   const height = window.innerHeight;
 
   const baseUrl = getBaseUrl();
+
+  const mergeEvents = (feedEvents, randomEvents) => {
+    const mergedEvents = [];
+    for (let randomEvent of randomEvents) {
+      if (
+        !feedEvents.find((feedEvent) => feedEvent.uuid === randomEvent.uuid)
+      ) {
+        mergedEvents.push(randomEvent);
+      }
+    }
+    for (let feedEvent of feedEvents) {
+      mergedEvents.push(feedEvent);
+    }
+    return mergedEvents;
+  };
 
   useEffect(() => {
     if (input && input.length) {
@@ -34,7 +50,7 @@ const Home = (props) => {
           if (data.content !== undefined) {
             setEvents(data.content);
           }
-          console.log(data);
+          // console.log(data);
         });
     } else {
       setEvents([]);
@@ -45,12 +61,14 @@ const Home = (props) => {
     fetch(`${baseUrl}/event-feed/${loggedUser}`, { method: "GET" })
       .then((res) => res.json())
       .then((data) => {
-        console.log(
-          "İSTEK ATILAN URL = ",
-          `${baseUrl}/event-feed/${loggedUser}`
-        );
-        console.log("FEED: ", data);
         setFeed(data.events);
+      });
+
+    fetch(`${baseUrl}/event-management/get-random-events`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        setRandomEvents(data.events);
+        // console.log("random events", data);
       });
   }, []);
 
@@ -91,30 +109,39 @@ const Home = (props) => {
         <h4 className={classes.upcomingEvents}>Events Feed</h4>
 
         <div className={classes.eventContainer}>
-          {events.map((item) => {
-            console.log("ITEM", item);
-            return (
-              <EventCard
-                imageUrl={item.imageUrl}
-                name={item.name}
-                date={item.startDate}
-                key={item.uuid}
-                uuid={item.uuid}
-              />
-            );
-          })}
-          {input === "" &&
-            feed.map((item) => {
+          {events
+            .filter(
+              (event) =>
+                event.organizatorUsername !== localStorage.getItem("username")
+            )
+            .map((item) => {
               return (
                 <EventCard
                   imageUrl={item.imageUrl}
                   name={item.name}
                   date={item.startDate}
-                  key={item.uuid}
-                  uuid={item.uuid}
+                  key={item.id}
+                  uuid={item.id}
                 />
               );
             })}
+          {input === "" &&
+            mergeEvents(feed, randomEvents)
+              .filter(
+                (event) =>
+                  event.organizatorUsername !== localStorage.getItem("username")
+              )
+              .map((item) => {
+                return (
+                  <EventCard
+                    imageUrl={item.imageUrl}
+                    name={item.name}
+                    date={item.startDate}
+                    key={item.uuid}
+                    uuid={item.uuid}
+                  />
+                );
+              })}
         </div>
         {/* <EventCard image={tennis} date="3ST JUNE-SAT 00:00 PM" name="Tenis" /> */}
       </div>

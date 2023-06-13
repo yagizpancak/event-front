@@ -1,11 +1,10 @@
 .container {
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   box-sizing: border-box;
-  display: flex;
+
   /* justify-content: center; */
   /* align-items: center; */
-  flex-direction: column;
 }
 
 .backBtn {
@@ -22,15 +21,17 @@
 }
 
 .title {
-  margin-left: 4vw;
+  margin-left: 10vw;
   font-size: 1em;
-  margin-bottom: 1vh;
+  margin-bottom: 3vh;
+
+  font-size: 2em;
 }
-.title2 {
+/* .title2 {
   margin-left: 4vw;
   font-size: 1em;
   margin-bottom: 4vh;
-}
+} */
 
 .dateContainer {
   width: 80vw;
@@ -61,17 +62,23 @@
 }
 
 .aboutTitle {
-  margin-top: 2vh;
-  margin-left: 3vw;
-  font-size: 4vh;
+  margin-top: 3vh;
+  margin-left: 10vw;
+  font-size: 2em;
 }
 
 .aboutText {
+  margin-left: 10vw;
+  width: 80vw;
+  overflow-wrap: break-word;
   font-size: 2vh;
-  padding: 3vw;
+  margin-top: 2vh;
 }
 
 .registerBtn {
+  position: absolute;
+  bottom: 5vh;
+  left: 12.5vw;
   width: 75vw;
   border-radius: 2vh;
   height: 7vh;
@@ -83,7 +90,6 @@
   margin: auto;
   border: none;
   font-size: 2.3vh;
-  margin-top: 3vh;
 }
 
 .pp {
