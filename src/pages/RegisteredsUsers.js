@@ -12,11 +12,11 @@ const RegisteredsUsers = (props) => {
   const { uuid } = useParams();
   const baseUrl = getBaseUrl();
   const [users, setUsers] = useState([]);
-  const [chaneCounter, setChangeCounter] = useState(0);
+  const [chaneCounter, setChangeCounter] = useState(false);
 
   function changed() {
     setChangeCounter((prev) => {
-      return prev + 1;
+      return !prev;
     });
   }
 
@@ -52,6 +52,11 @@ const RegisteredsUsers = (props) => {
           />
         );
       })}
+      {users.length === 0 && (
+        <span style={{ fontSize: 20, position: "absolute", top: "15vh" }}>
+          No Record.
+        </span>
+      )}
 
       <Footer page="events" />
     </div>

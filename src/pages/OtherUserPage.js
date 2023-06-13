@@ -12,7 +12,7 @@ const OtherUserPage = (props) => {
   const [tab, setTab] = useState("about");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [imgUrl, setImgUrl] = useState(user);
+  const [imgUrl, setImgUrl] = useState("");
   const [bioInformation, setBioInformation] = useState("");
   const [following, setFollowing] = useState(false);
   const [followers, setFollowers] = useState("-");
@@ -45,24 +45,24 @@ const OtherUserPage = (props) => {
       })
       .catch((err) => console.log(err));
 
-    fetch(`${baseUrl}/users/profile-img/${username}`, { method: "GET" })
-      .then((res) => {
-        console.log("ressss", res.status);
-        if (res.status === 500) {
-          const error = new Error("Internal server error yedin");
-          throw error;
-        } else {
-          console.log("500 dönmedi");
-          console.log(`${baseUrl}/users/profile-img/${username}`);
-          setImgUrl(`${baseUrl}/users/profile-img/${username}`);
-        }
-        console.log("else girdi");
-      })
-      .catch((e) => {
-        setImgUrl(user);
-        console.log("ımage not found");
-        console.log(e);
-      });
+    // fetch(`${baseUrl}/users/profile-img/${username}`, { method: "GET" })
+    //   .then((res) => {
+    //     console.log("ressss", res.status);
+    //     if (res.status === 500) {
+    //       const error = new Error("Internal server error yedin");
+    //       throw error;
+    //     } else {
+    //       console.log("500 dönmedi");
+    //       console.log(`${baseUrl}/users/profile-img/${username}`);
+    //       setImgUrl(`${baseUrl}/users/profile-img/${username}`);
+    //     }
+    //     console.log("else girdi");
+    //   })
+    //   .catch((e) => {
+    //     setImgUrl(user);
+    //     console.log("ımage not found");
+    //     console.log(e);
+    //   });
 
     fetch(`${baseUrl}/users/following-list/${loggedUser}`, { method: "GET" })
       .then((res) => {
@@ -86,7 +86,7 @@ const OtherUserPage = (props) => {
         setFollowings(data.followingCount);
         setFollowers(data.followerCount);
       });
-  }, []);
+  }, [followHandler]);
 
   function followHandler() {
     fetch(`${baseUrl}/users/follow/${loggedUser}/${username}`, {
@@ -106,7 +106,7 @@ const OtherUserPage = (props) => {
           style={{ height: tab === "posts" ? "5vh" : "10vh" }}
         ></div>
         <img
-          src={imgUrl}
+          src={imgUrl && `${baseUrl}/users/profile-img/${username}`}
           className={classes.pp}
           style={{
             width: tab === "posts" ? "10vh" : "15vh",
@@ -155,19 +155,9 @@ const OtherUserPage = (props) => {
           >
             EVENTS
           </div>
-          <div
-            className={classes.tab}
-            style={{ borderBottom: tab === "posts" && "3px solid orange" }}
-            onClick={() => {
-              setTab("posts");
-            }}
-          >
-            POSTS
-          </div>
         </div>
         {tab === "about" && <About bio={bioInformation} />}
         {tab === "event" && <Event />}
-        {tab === "posts" && <Posts />}
       </div>
       <Footer />
     </>
