@@ -31,7 +31,7 @@ function EventDetails() {
     })
       .then((res) => {
         if (res.status === 200) {
-          navigate("/");
+          navigate("/Homee");
         } else {
           const error = new Error("Sign up error " + res.status);
           throw error;
