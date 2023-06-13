@@ -8,6 +8,7 @@ import { getBaseUrl } from "../Api";
 
 function EventDetails() {
   const [event, setEvent] = useState();
+  const [timestamp, setTimestamp] = useState();
   const [userData, setUserData] = useState();
   const navigate = useNavigate(); // For navigating between secreens
   const { uuid } = useParams();
@@ -15,6 +16,7 @@ function EventDetails() {
   const slicedBaseUrl = baseUrl.slice(7);
 
   const loggedUser = localStorage.getItem("username");
+  
 
   function registerHandler() {
     fetch(`${baseUrl}/event-registration/add-registration`, {
@@ -28,8 +30,18 @@ function EventDetails() {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
+      .then((res) => {
+        if (res.status === 200) {
+          navigate("/");
+        } else {
+          const error = new Error("Sign up error " + res.status);
+          throw error;
+        }
+      })
+      .catch((err) => console.log(err));
   }
+  
 
   useEffect(() => {
     fetch(`${baseUrl}/event-management/getById/${uuid}`, { method: "GET" })
@@ -41,6 +53,7 @@ function EventDetails() {
           `${baseUrl}/users/profile/${data.organizatorUsername}`
         );
         setEvent(data);
+        setTimestamp(new Date(Date.parse(data.startDate)));
         return data;
       })
       .then((data) => {
@@ -58,6 +71,8 @@ function EventDetails() {
           });
       });
   }, []);
+
+  
   return (
     <div className={classes.container}>
       <BsArrowLeft
@@ -74,11 +89,12 @@ function EventDetails() {
       <div className={classes.dateContainer}>
         <img src={date}></img>
         <div className={classes.textContainer}>
-          <span style={{ fontSize: 18 }}>
-            {event && event.startDate.replace("T", " ").slice(0, -3)}
+          <span style={{ fontSize: 18 }} className={classes.date}>
+        
+            {timestamp && timestamp.toLocaleDateString()+" "+timestamp.toLocaleTimeString()}
           </span>
           {/* <span style={{ color: "gray", fontSize: 15 }}>
-            
+           
           </span> */}
         </div>
       </div>

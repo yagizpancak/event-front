@@ -102,14 +102,17 @@ function CompleteProfile() {
         <label htmlFor="file-input" className={classes.label}>
           <img className={classes.img} src={profilFoto}></img>
           <input
+            required
             id="file-input"
             type="file"
+            multiple="false"
             className={classes.imgInput}
             onChange={handleFotoYukleme}
           />
         </label>
 
         <input
+          required
           type="text"
           className={classes.input}
           placeholder="First Name"
@@ -117,6 +120,7 @@ function CompleteProfile() {
           autoComplete="on"
         />
         <input
+          required
           type="text"
           className={classes.input}
           placeholder="Last Name"
@@ -134,6 +138,10 @@ function CompleteProfile() {
         <button
           type="submit"
           className={classes.button}
+          style={{
+            backgroundColor: file ? "#0c8de4" : "gray",
+          }}
+          disabled={!file}
           // onClick={() => {
           //   navigate("/Home");
           // }}

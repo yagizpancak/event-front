@@ -65,24 +65,28 @@ function SignUp() {
       <form className={classes.form} onSubmit={handleSubmit}>
         <h2 className={classes.heading}>Sign Up</h2>
         <input
+          required
           type="text"
           className={classes.input}
           placeholder="username"
           ref={usernameRef}
         />
         <input
-          type="text"
+          required
+          type="email"
           className={classes.input}
           placeholder="email"
           ref={emailRef}
         />
         <input
+          required
           type="password"
           className={classes.input}
           placeholder="password"
           ref={passwordRef}
         />
         <input
+          required
           type="password"
           className={classes.input}
           placeholder="password confirm"

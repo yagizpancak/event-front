@@ -68,6 +68,7 @@ function Login() {
       <form className={classes.form} onSubmit={submitHandler}>
         <h2 className={classes.heading}>Sign In</h2>
         <input
+          required
           type="text"
           className={classes.input}
           placeholder="username"
@@ -75,6 +76,7 @@ function Login() {
           autoComplete="on"
         />
         <input
+          required
           type="password"
           className={classes.input}
           placeholder="password"

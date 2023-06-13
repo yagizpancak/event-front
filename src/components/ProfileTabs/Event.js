@@ -18,7 +18,7 @@ const Event = (props) => {
       .then((res) => res.json())
       .then((data) => setEvents(data.events));
   }, []);
-
+  console.log("event card prop", events);
   return (
     <>
       <div className={classes.event}>
@@ -35,7 +35,7 @@ const Event = (props) => {
                 imgUrl={item.imageUrl}
                 date={item.startDate}
                 name={item.name}
-                isClosed={item.isClosed}
+                isClosed={item.closed}
               />
             );
           })}

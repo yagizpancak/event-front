@@ -9,9 +9,11 @@ const EventCard = (props) => {
 
   const timestamp = new Date(Date.parse(props.date));
 
+  console.log(props);
   const dateString = props.isClosed ? (
+  
     <span style={{ color: "red" }}>
-      CLOSED
+      CLOSED  
       <span style={{ color: "orange" }}>
         {timestamp.toLocaleDateString()} {timestamp.toLocaleTimeString()}
       </span>
