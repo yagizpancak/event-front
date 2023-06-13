@@ -29,8 +29,6 @@ function EventDetails() {
         username: loggedUser,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
       .then((res) => {
         if (res.status === 200) {
           navigate("/");
