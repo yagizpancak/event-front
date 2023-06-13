@@ -178,7 +178,7 @@ const OtherUserPage = (props) => {
           </div>
         </div>
         {tab === "about" && <About bio={bioInformation} />}
-        {tab === "event" && <Event />}
+        {tab === "event" && <Event user={username}/>}
       </div>
       <Footer />
     </>

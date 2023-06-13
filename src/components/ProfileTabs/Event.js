@@ -8,11 +8,13 @@ const Event = (props) => {
   const [events, setEvents] = useState([]);
   const baseUrl = getBaseUrl();
 
+  const usernameAbsolute = !props.user ? localStorage.getItem(
+    "username"
+  ) : props.user;
+
   useEffect(() => {
     fetch(
-      `${baseUrl}/event-management/get-by-organizator/${localStorage.getItem(
-        "username"
-      )}`,
+      `${baseUrl}/event-management/get-by-organizator/${usernameAbsolute}`,
       { method: "GET" }
     )
       .then((res) => res.json())

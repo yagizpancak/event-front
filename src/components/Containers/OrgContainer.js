@@ -31,7 +31,7 @@ const OrgContainer = (props) => {
     fetch(`${baseUrl}/event-management/get-by-organizator/${username}`)
       .then((res) => res.json())
       .then((data) => {
-        setEvents(data.events.filter((item) => !item.isClosed));
+        setEvents(data.events.filter((item) => !item.closed));
       });
   }, [modalIsVisible]);
 
