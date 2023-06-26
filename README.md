@@ -1,1 +1,1 @@
-components/categorycard dosyasını yazacağım.
+Front End Code
